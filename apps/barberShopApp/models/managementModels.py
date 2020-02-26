@@ -9,7 +9,6 @@ class Cita(models.Model):
     date = models.DateTimeField(auto_now=True)
 
 
-
 class Barberia(models.Model):
     ciutat = models.CharField(max_length=30)
     carrer = models.CharField(max_length=60)
