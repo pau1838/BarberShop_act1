@@ -1,2 +1,2 @@
-from . import managmentModels
-from . import peopleModels
+from .peopleModels import *
+from .managmentModels import *

@@ -12,4 +12,4 @@ class Cita(models.Model):
 class Barberia(models.Model):
     ciutat = models.CharField(max_length=30)
     carrer = models.CharField(max_length=60)
-    img = models.ImageField(upload_to="images/")
+
