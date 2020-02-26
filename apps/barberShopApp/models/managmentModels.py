@@ -1,6 +1,15 @@
 from django.db import models
-from . import
+from .peopleModels import Barber, Client
+
 
 # Create your models here.
-class Cite(models.Model):
+class Cita(models.Model):
     barber = models.ForeignKey(Barber, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now=True)
+
+
+class Barberia(models.Model):
+    ciutat = models.CharField(max_length=30)
+    carrer = models.CharField(max_length=60)
+    img = models.ImageField(upload_to="images/")
