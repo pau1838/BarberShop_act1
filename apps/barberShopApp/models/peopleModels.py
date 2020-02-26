@@ -6,9 +6,9 @@ class Barber(models.Model):
     AFTERNOON = 'AT'
     WHOLE_DAY = 'WD'
     TURNS = [
-        (MORNING, 'morning'),
-        (AFTERNOON, 'afternoon'),
-        (WHOLE_DAY, 'whole day')
+        (MORNING, 'Morning'),
+        (AFTERNOON, 'Afternoon'),
+        (WHOLE_DAY, 'Whole day')
     ]
 
     first_name = models.CharField(name='Nom', max_length=30)
