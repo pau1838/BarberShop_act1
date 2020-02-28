@@ -15,4 +15,3 @@ class Barberia(models.Model):
 
     def __str__(self):
         return "Barberia SOFTWARE " + str(self.ciutat)
-
