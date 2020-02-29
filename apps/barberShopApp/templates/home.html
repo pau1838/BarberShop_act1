@@ -5,6 +5,16 @@
     <title>Title</title>
 </head>
 <body>
+        {% if llista_barberies %}
+    <ul>
+        {% for barberia in llista_barberies %}
+        <li> <a href="/barbershop/{{ barberia.id }}/">{{ barberia.carrer }}</a></li>
+    {% endfor %}
 
+    </ul>
+
+    {% else %}
+    <p>No hi ha barberies.</p>
+    {% endif %}
 </body>
 </html>
