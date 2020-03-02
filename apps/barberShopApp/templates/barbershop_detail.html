@@ -1,1 +1,11 @@
 {% extends "base.html" %}
+
+{% block page_content %}
+    <h1>Barbers de la barberia {{ barber_shop.name }}:</h1>
+    <ul>
+        {% for barber in barbers %}
+            <li>Barber: {{ barber }}</li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}
