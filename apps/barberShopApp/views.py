@@ -12,7 +12,7 @@ def detail(request, barberia_id):
 def index(request):
     llista_barberies = Barberia.objects.order_by('ciutat')
     context = {
-        'llista_barberies' : llista_barberies,
+        'llista_barberies': llista_barberies,
 
     }
 

@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block page_content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +11,7 @@
         {% if llista_barberies %}
     <ul>
         {% for barberia in llista_barberies %}
-        <li> <a href="/barbershop/{{ barberia.id }}/">{{ barberia.carrer }}</a></li>
+        <li> <a href="/barbershop/{{ barberia.id }}/">{{ barberia.name }}</a></li>
     {% endfor %}
 
     </ul>
@@ -18,3 +21,4 @@
     {% endif %}
 </body>
 </html>
+{% endblock %}
