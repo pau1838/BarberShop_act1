@@ -11,7 +11,7 @@
         {% if llista_barberies %}
     <ul>
         {% for barberia in llista_barberies %}
-        <li> <a href="/{{ barberia.name}}/">{{ barberia.name }}</a></li>
+        <li> <a href="/{{barberia.pk}}/">{{ barberia.name }}</a></li>
     {% endfor %}
 
     </ul>
