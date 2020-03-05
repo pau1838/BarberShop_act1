@@ -10,3 +10,9 @@ def barbers_list(request, pk):
                'barber_shop': barber_shop}
 
     return render(request, 'barbershop_detail.html', context)
+
+
+def test(request):
+    context = {}
+
+    return render(request, 'user_profile.html', context)
