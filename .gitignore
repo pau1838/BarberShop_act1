@@ -178,4 +178,9 @@ env.bak/
 venv.bak/
 pip-selfcheck.json
 
+
+# Data Bases
+db.sqlite3
+migrations
+
 # End of https://www.gitignore.io/api/venv,django,python

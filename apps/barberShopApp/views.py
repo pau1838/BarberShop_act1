@@ -9,8 +9,11 @@ from .models import Barberia
 def index(request):
     llista_barberies = Barberia.objects.order_by('ciutat')
     context = {
-        'llista_barberies' : llista_barberies,
-
+        'llista_barberies': llista_barberies,
+        'img_bcn': "static/images/barcelona.jpg",
+        'img_lld': "static/images/lleida.jpg",
+        'img_tgn': "static/images/tarragona.jpg",
+        'img_grn': "static/images/girona.jpg"
     }
 
     return render(request, 'home.html', context)

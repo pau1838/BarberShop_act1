@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block page_content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -9,13 +9,17 @@
 </head>
 <body>
         {% if llista_barberies %}
-            <div class="row" style="margin-left: 2%; margin-top: 2%">
+            <div class="row">
                 {% for barberia in llista_barberies %}
                       <div class="col-lg-4">
-                        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+                          <div class="barbershop-img">
+                            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text>
+                                <image width=150% height=100% href={{img_bcn}} clip-path="url(#myCircle)" />
+                            </svg>
+                          </div>
                         <h2>{{ barberia.name }}</h2>
-                        <p>Barberia de {{ barberia.ciutat }}, que es troba al carrer {{ barberia.carrer }}.</p>
-                        <p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>
+                        <p class="barber-description">Barberia de {{ barberia.ciutat }}, que es troba al carrer {{ barberia.carrer }}.</p>
+                        <p><a class="btn btn-info" href="/{{barberia.pk}}/" role="button">Agafar hora</a></p>
                       </div><!-- /.col-lg-4 -->
                 {% endfor %}
             </div>
