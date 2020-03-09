@@ -13,7 +13,7 @@ class Barberia(models.Model):
     name = models.CharField(max_length=30)
     ciutat = models.CharField(max_length=30)
     carrer = models.CharField(max_length=60)
-    image = models.ImageField(upload_to='images/', default='')
+    image = models.ImageField()
 
     def __str__(self):
         return self.name
