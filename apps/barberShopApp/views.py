@@ -4,7 +4,6 @@ from django.template import loader
 
 from .models import Barberia
 
-# Create your views here.
 
 def index(request):
     llista_barberies = Barberia.objects.order_by('ciutat')
@@ -13,6 +12,7 @@ def index(request):
     }
 
     return render(request, 'home.html', context)
+
 
 def barbers_list(request, pk):
     barber_shop = Barberia.objects.get(pk=pk)
@@ -24,7 +24,13 @@ def barbers_list(request, pk):
     return render(request, 'barbershop_detail.html', context)
 
 
-def test(request):
-    context = {}
+def barber_detail(request, pk_bs, pk_b):
+    barber_shop = Barberia.objects.get(pk=pk_bs)
+    barber = barber_shop.barbers.get(pk=pk_b)
 
-    return render(request, 'user_profile.html', context)
+    context = {
+        'barber': barber,
+        'barber_shop': barber_shop
+    }
+
+    return render(request, 'barber_calendar.html', context)
