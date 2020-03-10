@@ -1,0 +1,25 @@
+.col-lg-4 {
+    max-width:100%;
+    height:auto;
+    width: auto;
+    margin: auto;
+    margin-top: 3%;
+}
+
+.barber-description {
+    text-align: center;
+}
+
+.main-body{
+    background-color: #181818;
+}
+
+.barbershop-img{
+    margin: auto;
+    margin-bottom: 4%;
+}
+
+.row{
+    text-align: center;
+    margin: auto;
+}
