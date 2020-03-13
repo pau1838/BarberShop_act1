@@ -1,3 +1,5 @@
+{% extends "base.html" %}
+{% block page_content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +7,25 @@
     <title>Barber Calendar</title>
 </head>
 <body>
-
+    {% if barber.turn == 'MR' %}
+        <ul>
+            {% for turn in morning_turn %}
+                <li>{{ turn }}</li>
+            {% endfor %}
+        </ul>
+    {% elif barber.turn == "AT" %}
+        <ul>
+            {% for turn in afternoon_turn %}
+                <li>{{ turn }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <ul>
+            {% for turn in complete_turn %}
+                <li>{{ turn }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </body>
 </html>
+{% endblock %}
