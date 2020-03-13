@@ -56,6 +56,7 @@ class ClientManager(BaseUserManager):
 
 
 class Client(AbstractBaseUser):
+
     email = models.EmailField(max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)
     date_joined = models.DateTimeField('date joined', auto_now_add=True)
@@ -68,8 +69,8 @@ class Client(AbstractBaseUser):
     first_name = models.CharField('Nom', max_length=30)
     last_name = models.CharField('Cognoms', max_length=40)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', ]
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email', ]
 
     object = ClientManager()
 

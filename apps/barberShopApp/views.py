@@ -3,13 +3,15 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from django.contrib.auth import login, authenticate
 from apps.barberShopApp.forms import RegistrationForm
-from .models import Barberia
+from .models import Barberia, Client
 
 
 def index(request):
     llista_barberies = Barberia.objects.order_by('ciutat')
+    users = request.user
     context = {
         'llista_barberies': llista_barberies,
+        'users': users
     }
 
     return render(request, 'home.html', context)

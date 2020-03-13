@@ -7,6 +7,7 @@
     <title>BarberShop Home</title>
 </head>
 <body>
+        <div>Hola {{ users.get_username }}</div>
         {% if llista_barberies %}
             <div class="row">
                 {% for barberia in llista_barberies %}
