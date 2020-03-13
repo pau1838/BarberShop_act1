@@ -55,7 +55,8 @@ ROOT_URLCONF = 'BarberShop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), 'BarberShop/templates']
+        'DIRS': [os.path.join(BASE_DIR, 'templates'),
+                 'BarberShop/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -120,3 +121,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/apps/barberShopApp/static/',
+]
+
+MEDIA_ROOT = (
+    os.path.join(BASE_DIR, 'apps/barberShopApp/static/media')
+)
+MEDIA_URL = '/apps/barberShopApp/static/media/'
+

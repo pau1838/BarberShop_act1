@@ -4,7 +4,7 @@
     <h1>Barbers de la barberia {{ barber_shop.name }}:</h1>
     <ul>
         {% for barber in barbers %}
-            <li>Barber: {{ barber }}</li>
+            <li><a href="/barbershop/{{barber_shop.pk}}/barber/{{barber.pk}}">Barber: {{ barber }}</a></li>
 
         {% endfor %}
     </ul>

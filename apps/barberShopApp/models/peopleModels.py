@@ -13,7 +13,7 @@ class Barber(models.Model):
 
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    turn = models.CharField(max_length=2, choices=TURNS)
+    turn = models.CharField(max_length=2, choices=TURNS, default='MR')
     phone = models.CharField(max_length=9)
     barberShop = models.ForeignKey('Barberia', on_delete=models.SET_NULL, null=True, related_name='barbers')
 
