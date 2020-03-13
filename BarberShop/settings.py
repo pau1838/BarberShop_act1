@@ -27,7 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#Usuari customitzat
 
+AUTH_USER_MODEL ='barberShopApp.Client'
 # Application definition
 
 INSTALLED_APPS = [
