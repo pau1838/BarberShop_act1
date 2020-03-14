@@ -24,15 +24,15 @@ class Barber(models.Model):
 
 
 class ClientManager(BaseUserManager):
-    def create_user(self, email, username, password=None):
+    def create_user(self, email, username, first_name = None, last_name = None, password=None):
         if not email:
             raise ValueError("Els usuaris necessiten tenir una adreça d'email")
         if not username:
             raise ValueError("Els usuaris necessiten especificar el nom d'usuari")
-        # if not fisrt_name:
-        #     raise ValueError("Els usuaris necessiten especificar el sue nom")
-        # if not last_name:
-        #     raise ValueError("Els usuaris necessiten especificar el seu cognom")
+        if not first_name:
+             raise ValueError("Els usuaris necessiten especificar el sue nom")
+        if not last_name:
+           raise ValueError("Els usuaris necessiten especificar el seu cognom")
 
         user = self.model(
             email=self.normalize_email(email),
@@ -42,9 +42,8 @@ class ClientManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, password):
+    def create_superuser(self, username,email, first_name, last_name, password):
         user = self.create_user(
-            email=self.normalize_email(email),
             username=username,
             password=password
         )
@@ -57,8 +56,8 @@ class ClientManager(BaseUserManager):
 
 class Client(AbstractBaseUser):
 
-    email = models.EmailField(max_length=60, unique=True)
-    username = models.CharField(max_length=30, unique=True)
+    email = models.EmailField(max_length=60, unique=True, help_text=None)
+    username = models.CharField('Nom d\'usuari',max_length=30, unique=True)
     date_joined = models.DateTimeField('date joined', auto_now_add=True)
     last_login = models.DateTimeField('last login', auto_now=True)
     is_admin = models.BooleanField(default=False)
@@ -66,16 +65,24 @@ class Client(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
+    Home = 'H'
+    Dona = 'D'
+    Altre = 'A'
+    SEXE = [(Home, 'Home'), (Dona, 'Dona'), (Altre, 'Altre')]
+
     first_name = models.CharField('Nom', max_length=30)
     last_name = models.CharField('Cognoms', max_length=40)
 
+    phone = models.CharField('Telèfon', max_length=9, null=True)
+    sexe = models.CharField('Sexe', max_length=10, choices=SEXE, default='Altre' )
+
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email', ]
+    REQUIRED_FIELDS = ['email']
 
     object = ClientManager()
 
     def __str__(self):
-        return self.email
+        return self.username
 
     def has_perm(self, perm, obj=None):
         return self.is_admin

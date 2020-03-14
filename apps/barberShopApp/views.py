@@ -8,10 +8,13 @@ from .models import Barberia, Client
 
 def index(request):
     llista_barberies = Barberia.objects.order_by('ciutat')
-    users = request.user
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        user = None
     context = {
         'llista_barberies': llista_barberies,
-        'users': users
+        'user': user
     }
 
     return render(request, 'home.html', context)
@@ -52,10 +55,10 @@ def registration_view(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            email = form.cleaned_data.get("email")
+            username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
 
-            account = authenticate(email=email, password= raw_password)
+            account = authenticate(username= username,password= raw_password)
             login(request, account)
             return redirect('index')
         else:

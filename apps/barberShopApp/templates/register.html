@@ -1,11 +1,16 @@
-
-{% block content %}
-
+{% extends 'base.html' %}
+{% block page_content %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>BarberShop Home</title>
+</head>
+    <body>
     <h2>Register</h2>
-    <form style="background-color: black;", method="post">{% csrf_token %}
+    <form class="main-body", method="post">{% csrf_token %}
 
         {% for field in registration_form %}
-            <p style="color: azure;">
+            <p style="color: azure; margin-left: auto">
                 {{ field.label_tag }}
                 {{ field }}
 
@@ -21,5 +26,8 @@
         {% endfor %}
     <button type="submit">Register</button>
     </form>
+    </body>
 
-{% endblock content %}
+</html>
+
+{% endblock %}

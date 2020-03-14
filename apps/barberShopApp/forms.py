@@ -4,8 +4,18 @@ from .models import Client
 
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(max_length=60, help_text="Afegeix el teu email")
+
+    email = forms.EmailField(max_length=60, required= True)
 
     class Meta:
         model = Client
-        fields = ("email", "username", "password1", "password2")
+        fields = ("username",
+                  'email',
+                  'first_name',
+                  'last_name',
+                  "phone",
+                  "password1",
+                  "password2")
+    # def save(self, commit=True):
+    #     user = super(RegistrationForm, self).save(commit=False)
+    #     user.first_name = cleaned_data['first_name']

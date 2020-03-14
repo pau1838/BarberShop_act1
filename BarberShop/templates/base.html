@@ -19,8 +19,11 @@
         <a class="p-2 text-white" href="#">Support</a>
         <a class="p-2 text-white" href="#">Pricing</a>
       </nav>
-
-      <a class="btn btn-primary" href="/register/">Iniciar sessió</a>
+        {% if not user %}
+             <a class="btn btn-primary" href="/register/">Log in</a>
+        {% else %}
+            <a class="btn btn-primary" href="/register/">Log out</a>
+        {% endif %}
     </div>
   </body>
     {% block page_content %}
