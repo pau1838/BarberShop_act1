@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
-
-from .models import Barberia
+from django.shortcuts import redirect
+from .forms import CitaForm
+from .models import *
 
 
 def index(request):
@@ -27,18 +28,12 @@ def barbers_list(request, pk):
 def barber_detail(request, pk_bs, pk_b):
     barber_shop = Barberia.objects.get(pk=pk_bs)
     barber = barber_shop.barbers.get(pk=pk_b)
-    morning_turn = ["9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00"]
-    afternoon_turn = ["16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00"]
-    complete_turn = []
-    complete_turn.extend(morning_turn)
-    complete_turn.extend(afternoon_turn)
+    appointments = barber.appointments.all()
 
     context = {
         'barber': barber,
         'barber_shop': barber_shop,
-        'morning_turn': morning_turn,
-        'afternoon_turn': afternoon_turn,
-        'complete_turn': complete_turn
+        'appointments': appointments
     }
 
     return render(request, 'barber_calendar.html', context)

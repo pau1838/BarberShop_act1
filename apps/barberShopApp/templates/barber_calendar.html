@@ -7,25 +7,11 @@
     <title>Barber Calendar</title>
 </head>
 <body>
-    {% if barber.turn == 'MR' %}
-        <ul>
-            {% for turn in morning_turn %}
-                <li>{{ turn }}</li>
-            {% endfor %}
-        </ul>
-    {% elif barber.turn == "AT" %}
-        <ul>
-            {% for turn in afternoon_turn %}
-                <li>{{ turn }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <ul>
-            {% for turn in complete_turn %}
-                <li>{{ turn }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <ul class="list-group">
+      {% for apt in appointments %}
+        <li class="list-group-item">{{ apt.date }}</li>
+      {% endfor %}
+    </ul>
 </body>
 </html>
 {% endblock %}
