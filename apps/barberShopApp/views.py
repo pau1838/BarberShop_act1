@@ -1,12 +1,21 @@
-from .filters import CitaFilter
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.template import loader
+from django.contrib.auth import login, authenticate, logout
+from apps.barberShopApp.forms import RegistrationForm
 from .models import *
+from .filters import CitaFilter
 
 
 def index(request):
     llista_barberies = Barberia.objects.order_by('ciutat')
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        user = None
     context = {
         'llista_barberies': llista_barberies,
+        'user': user
     }
 
     return render(request, 'home.html', context)
@@ -36,6 +45,48 @@ def barber_detail(request, pk_bs, pk_b):
     }
 
     return render(request, 'barber_calendar.html', context)
+
+def registration_view(request):
+    context = {}
+    if request.POST:
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get("username")
+            raw_password = form.cleaned_data.get("password1")
+
+            account = authenticate(username=username, password=raw_password)
+            login(request, account)
+            return redirect('index')
+        else:
+            context['registration_form'] = form
+    else:
+        form = RegistrationForm()
+        context['registration_form'] = form
+    return render(request, 'register.html', context)
+
+
+def user_login(request):
+    if request.POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                return redirect('index')
+            else:
+                return HttpResponse("Compte inactiu!")
+        else:
+            return HttpResponse("Detalls de login invalids")
+    else:
+        return render(request, 'login.html', {})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('index')
 
 
 def appointment_reserve(request, pk_bs, pk_b, pk_p):

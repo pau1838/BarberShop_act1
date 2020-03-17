@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.urls import reverse_lazy
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -27,7 +29,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#Usuari customitzat
 
+AUTH_USER_MODEL ='barberShopApp.Client'
 # Application definition
 
 INSTALLED_APPS = [
@@ -65,6 +69,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.barberShopApp.context_processors.add_variable_to_context',
             ],
         },
     },
@@ -122,6 +127,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGIN_REDIRECT_URL = reverse_lazy('home')
+LOGOUT_REDIRECT_URL = reverse_lazy('home')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
