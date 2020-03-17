@@ -108,7 +108,7 @@ def assign_appointment(request, pk_bs, pk_b, pk_p):
     barber_shop = Barberia.objects.get(pk=pk_bs)
     barber = barber_shop.barbers.get(pk=pk_b)
     appointment = Cita.objects.get(pk=pk_p)
-    Cita.objects.filter(pk=pk_p).update(client=ClientTest(1))
+    Cita.objects.filter(pk=pk_p).update(client=request.user)
 
     context = {
         'barber': barber,
