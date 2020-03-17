@@ -7,11 +7,33 @@
     <title>Barber Calendar</title>
 </head>
 <body>
-    <ul class="list-group">
-      {% for apt in appointments %}
-        <li class="list-group-item">{{ apt.date }}</li>
-      {% endfor %}
-    </ul>
+    <div class="barber-description">
+        <h3>
+          Barber {{ barber.first_name }} {{ barber.last_name }}
+          <small class="text-muted">{{ barber.barberShop }}</small>
+        </h3>
+    </div>
+    <div class="filter">
+        <div class="filter-form">
+            <h5 class="filter-title">Cerca dates o hores determinades:</h5>
+            <form method="get">
+                {{ filter.form.as_p }}
+                <button type="Filtra" class="btn btn-primary btn-sm">Aplica filtre</button>
+            </form>
+        </div>
+        <div class="list-hours">
+            <h5 class="filter-title">Escull una data i hora que et vagi bé:</h5>
+            {% if filter.qs.count == 0 %}
+                <h7 class="not-found-hours">No s'han trobat hores disponibles amb aquest filtre.</h7>
+            {% else %}
+                 {% for apt in filter.qs %}
+                    <a href="/barbershop/{{barber_shop.pk}}/barber/{{barber.pk}}/cita/{{ apt.pk }}" class="list-group-item list-group-item-action">
+                        {{ apt.date }} - {{ apt.hour }}
+                    </a>
+                 {% endfor %}
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>
 {% endblock %}

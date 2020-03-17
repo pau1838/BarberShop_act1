@@ -6,7 +6,8 @@ from .peopleModels import Barber, Client
 class Cita(models.Model):
     barber = models.ForeignKey(Barber, on_delete=models.CASCADE, related_name='appointments')
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name='appointments', null=True, blank=True)
-    date = models.DateTimeField()
+    date = models.DateField()
+    hour = models.TimeField()
 
 
 class Barberia(models.Model):

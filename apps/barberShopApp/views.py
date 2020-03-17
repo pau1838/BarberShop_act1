@@ -1,8 +1,5 @@
-from django.http import HttpResponse
+from .filters import CitaFilter
 from django.shortcuts import render
-from django.template import loader
-from django.shortcuts import redirect
-from .forms import CitaForm
 from .models import *
 
 
@@ -29,11 +26,27 @@ def barber_detail(request, pk_bs, pk_b):
     barber_shop = Barberia.objects.get(pk=pk_bs)
     barber = barber_shop.barbers.get(pk=pk_b)
     appointments = barber.appointments.all()
+    cita_filter = CitaFilter(request.GET, queryset=appointments)
 
     context = {
         'barber': barber,
         'barber_shop': barber_shop,
-        'appointments': appointments
+        'appointments': appointments,
+        'filter': cita_filter
     }
 
     return render(request, 'barber_calendar.html', context)
+
+
+def appointment_reserve(request, pk_bs, pk_b, pk_p):
+    barber_shop = Barberia.objects.get(pk=pk_bs)
+    barber = barber_shop.barbers.get(pk=pk_b)
+    appointment = Cita.objects.get(pk=pk_p)
+
+    context = {
+        'barber': barber,
+        'barber_shop': barber_shop,
+        'appointment': appointment,
+    }
+
+    return render(request, 'appointment_reserve.html', context)

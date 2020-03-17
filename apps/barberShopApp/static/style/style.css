@@ -24,6 +24,30 @@
     margin: auto;
 }
 
+.filter{
+    margin-left: 2%;
+}
+
 .list-group-item{
     color: #181818;
+    width: 50%;
+}
+
+.filter-form{
+    margin-left: 2%;
+    margin-top: 2%;
+
+}
+
+.list-hours{
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.filter-title{
+    margin-bottom: 1%;
+}
+
+.not-found-hours{
+    color: #fff500;
 }
