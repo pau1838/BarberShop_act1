@@ -6,4 +6,5 @@ urlpatterns = [
     path('barbershop/<int:pk>/', views.barbers_list, name='barbers_list'),
     path('barbershop/<int:pk_bs>/barber/<int:pk_b>/', views.barber_detail, name='barber_detail'),
     path('barbershop/<int:pk_bs>/barber/<int:pk_b>/cita/<int:pk_p>/', views.appointment_reserve, name='appointment_reserve'),
+    path('barbershop/<int:pk_bs>/barber/<int:pk_b>/cita/<int:pk_p>/thanks', views.assign_appointment, name='assign_appointment'),
 ]

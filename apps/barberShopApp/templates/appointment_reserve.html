@@ -6,8 +6,19 @@
     <meta charset="UTF-8">
     <title>BarberShop Home</title>
 </head>
-<body>
+<body class="bg-light">
 
+    <div class="container">
+        <div class="py-4 text-center">
+            <img class="d-block mx-auto mb-4" src="/apps/barberShopApp/static/media/barbershop-icon.png" alt="" width="10%" height="10%">
+            <h2>Confirmació de cita</h2>
+            <p class="lead">Vols confirmar la cita per la barberia {{ barber_shop.name }} amb el barber {{ barber.first_name }}  {{ barber.last_name }} per al dia {{ appointment.date }} i hora {{ appointment.hour }} ?</p>
+        </div>
+        <div class="appointment-buttons">
+            <a class="btn btn-success" href="/barbershop/{{barber_shop.pk}}/barber/{{barber.pk}}/cita/{{appointment.pk}}/thanks" role="button">Confirmar</a>
+            <a class="btn btn-secondary" href="/barbershop/{{barber_shop.pk}}/barber/{{barber.pk}}/" role="button">Cancel·lar</a>
+        </div>
+    </div>
 </body>
 </html>
 
