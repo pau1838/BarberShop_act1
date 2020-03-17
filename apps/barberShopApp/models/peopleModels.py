@@ -28,11 +28,6 @@ class ClientManager(BaseUserManager):
             raise ValueError("Els usuaris necessiten tenir una adreça d'email")
         if not username:
             raise ValueError("Els usuaris necessiten especificar el nom d'usuari")
-        if not first_name:
-             raise ValueError("Els usuaris necessiten especificar el sue nom")
-        if not last_name:
-           raise ValueError("Els usuaris necessiten especificar el seu cognom")
-
         user = self.model(
             email=self.normalize_email(email),
             username=username,
@@ -41,9 +36,10 @@ class ClientManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username,email, first_name, last_name, password):
+    def create_superuser(self, username, email, password):
         user = self.create_user(
             username=username,
+            email=email,
             password=password
         )
         user.is_admin = True
