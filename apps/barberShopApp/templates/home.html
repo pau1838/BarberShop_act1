@@ -9,11 +9,6 @@
     <title>BarberShop Home</title>
 </head>
 <body>
-        {% if user %}
-            <div>Hola {{ user.username }}</div>
-        {% else %}
-            <div>Cap usuari registrat</div>
-        {% endif %}
         {% if llista_barberies %}
             <div class="row">
                 {% for barberia in llista_barberies %}
