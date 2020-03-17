@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from apps.barberShopApp.forms import RegistrationForm
 from .models import Barberia, Client
 
@@ -49,6 +49,7 @@ def barber_detail(request, pk_bs, pk_b):
 
     return render(request, 'barber_calendar.html', context)
 
+
 def registration_view(request):
     context = {}
     if request.POST:
@@ -58,7 +59,7 @@ def registration_view(request):
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
 
-            account = authenticate(username= username,password= raw_password)
+            account = authenticate(username=username, password=raw_password)
             login(request, account)
             return redirect('index')
         else:
@@ -67,3 +68,25 @@ def registration_view(request):
         form = RegistrationForm()
         context['registration_form'] = form
     return render(request, 'register.html', context)
+
+
+def user_login(request):
+    if request.POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                return redirect('index')
+            else:
+                return HttpResponse("Compte inactiu!")
+        else:
+            return HttpResponse("Detalls de login invalids")
+    else:
+        return render(request, 'login.html', {})
+
+def user_logout(request):
+    logout(request)
+    return redirect('index')

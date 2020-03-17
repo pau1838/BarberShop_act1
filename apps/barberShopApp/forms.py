@@ -5,7 +5,7 @@ from .models import Client
 
 class RegistrationForm(UserCreationForm):
 
-    email = forms.EmailField(max_length=60, required= True)
+    #email = forms.EmailField(max_length=60, required= True)
 
     class Meta:
         model = Client
@@ -14,6 +14,7 @@ class RegistrationForm(UserCreationForm):
                   'first_name',
                   'last_name',
                   "phone",
+                  'sexe',
                   "password1",
                   "password2")
     # def save(self, commit=True):

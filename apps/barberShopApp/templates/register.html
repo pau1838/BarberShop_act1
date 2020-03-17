@@ -1,32 +1,23 @@
-{% extends 'base.html' %}
+
+{% extends "base.html" %}
+
 {% block page_content %}
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>BarberShop Home</title>
+    <title>BarberShop Registration</title>
 </head>
-    <body>
-    <h2>Register</h2>
-    <form class="main-body", method="post">{% csrf_token %}
+<body>
 
-        {% for field in registration_form %}
-            <p style="color: azure; margin-left: auto">
-                {{ field.label_tag }}
-                {{ field }}
-
-                {% if field.help_text %}
-                    <small style="color: gold;">{{ field.help_text }}</small>
-
-                {% endif %}
-                {% for error in field.errors %}
-                    <p style="color: red;"><{{ error }}/p>
-                {% endfor %}
-
-            </p>
-        {% endfor %}
-    <button type="submit">Register</button>
-    </form>
-    </body>
+    <h2 style="width: 50%; margin: auto">Registra't</h2>
+        <form method="post", class=frm-ulari>
+            {% csrf_token %}
+            <table style="display: inline-block">
+                {{ registration_form.as_table }}
+            </table>
+    <button type="submit", class="boto">Register</button>
+     </form>
+</body>
 
 </html>
 
