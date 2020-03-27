@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <h1>Barbers de la barberia {{ barber_shop.name }}:</h1>
+    <ul>
+        {% for barber in barbers %}
+            <li><a href="/barbershop/{{barber_shop.pk}}/barber/{{barber.pk}}">Barber: {{ barber }}</a></li>
+
+        {% endfor %}
+    </ul>
+{% endblock %}

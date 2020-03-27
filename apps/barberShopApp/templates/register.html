@@ -1,0 +1,24 @@
+
+{% extends "base.html" %}
+
+{% block page_content %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>BarberShop Registration</title>
+</head>
+<body>
+
+    <h2 style="width: 50%; margin: auto">Registra't</h2>
+        <form method="post", class=frm-ulari>
+            {% csrf_token %}
+            <table style="display: inline-block">
+                {{ registration_form.as_table }}
+            </table>
+    <button type="submit", class="boto">Register</button>
+     </form>
+</body>
+
+</html>
+
+{% endblock %}
