@@ -103,3 +103,11 @@ select {
 .thanks-page{
     margin-top: 4%;
 }
+
+.example{
+    position: relative;
+    color: #30d5ff;
+    font-style: italic;
+    left: 3%;
+    margin: 0;
+}

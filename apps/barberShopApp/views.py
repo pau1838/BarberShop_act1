@@ -5,6 +5,7 @@ from django.contrib.auth import login, authenticate, logout
 from apps.barberShopApp.forms import RegistrationForm
 from .models import *
 from .filters import CitaFilter
+from django.contrib import messages
 
 
 def index(request):
@@ -91,17 +92,20 @@ def user_logout(request):
 
 
 def appointment_reserve(request, pk_bs, pk_b, pk_p):
-    barber_shop = Barberia.objects.get(pk=pk_bs)
-    barber = barber_shop.barbers.get(pk=pk_b)
-    appointment = Cita.objects.get(pk=pk_p)
+    if request.user.is_authenticated:
+        barber_shop = Barberia.objects.get(pk=pk_bs)
+        barber = barber_shop.barbers.get(pk=pk_b)
+        appointment = Cita.objects.get(pk=pk_p)
 
-    context = {
-        'barber': barber,
-        'barber_shop': barber_shop,
-        'appointment': appointment,
-    }
+        context = {
+            'barber': barber,
+            'barber_shop': barber_shop,
+            'appointment': appointment,
+        }
 
-    return render(request, 'appointment_reserve.html', context)
+        return render(request, 'appointment_reserve.html', context)
+    else:
+        return redirect('login')
 
 
 def assign_appointment(request, pk_bs, pk_b, pk_p):
