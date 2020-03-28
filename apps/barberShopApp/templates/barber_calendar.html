@@ -28,9 +28,11 @@
                 <h7 class="not-found-hours">No s'han trobat hores disponibles amb aquest filtre.</h7>
             {% else %}
                  {% for apt in filter.qs %}
-                    <a href="/barbershop/{{barber_shop.pk}}/barber/{{barber.pk}}/cita/{{ apt.pk }}" class="list-group-item list-group-item-action">
-                        {{ apt.date }} - {{ apt.hour }}
-                    </a>
+                     {% if apt.client == None %}
+                        <a href="/barbershop/{{barber_shop.pk}}/barber/{{barber.pk}}/cita/{{ apt.pk }}" class="list-group-item list-group-item-action">
+                            {{ apt.date }} - {{ apt.hour }}
+                        </a>
+                     {% endif %}
                  {% endfor %}
             {% endif %}
         </div>
