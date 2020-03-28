@@ -125,7 +125,7 @@ def assign_appointment(request, pk_bs, pk_b, pk_p):
 
 def show_reservations(request, pk):
     user = Client.object.get(pk=pk)
-    appointments = Cita.objects.all()
+    appointments = Cita.objects.filter(client=user)
 
     context = {
         'appointments': appointments,
