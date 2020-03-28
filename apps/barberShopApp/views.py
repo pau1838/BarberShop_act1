@@ -121,3 +121,16 @@ def assign_appointment(request, pk_bs, pk_b, pk_p):
     }
 
     return render(request, 'thank_you.html', context)
+
+
+def show_reservations(request, pk):
+    user = Client.object.get(pk=pk)
+    appointments = Cita.objects.all()
+
+    context = {
+        'appointments': appointments,
+        'user': user
+    }
+
+    return render(request, 'show_reservations.html', context)
+

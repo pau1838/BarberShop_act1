@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+    <div class="col-lg-4">
+        <h1>Les teves cites, {{ user }}:</h1>
+        {% if appointments.count == 0 %}
+            <ul>
+                {% for cita in appointments %}
+                    {% if cita.client.pk == user.pk %}
+                        <li><a>Cita dia {{ cita.date }} a les {{ cita.hour }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p style="color: #fff500">No tens cap reserva encara.</p>
+        {% endif %}
+    </div>
+{% endblock %}

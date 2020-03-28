@@ -38,6 +38,7 @@
 input[type=text]:focus {
   background-color: lightblue;
 }
+
  input[type=password]:focus{
      background-color: lightblue;
  }
@@ -50,7 +51,6 @@ select {
   background-color: #f1f1f1;
     color: black;
 }
-
 
 .boto{
   background-color: #4CAF50;
